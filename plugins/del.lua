@@ -5,10 +5,10 @@ end
 end
 local function run(msg, matches)
     if matches[1] == 'del' then
-    if msg.chat_id_:match("^-100") then
+    if msg.chat_id_:match("^-10000") then
        if is_owner(msg) or is_mod(msg) then
-          if tonumber(matches[2]) > 100 or tonumber(matches[2]) < 1 then
-             pm = '_ 100> ÊÚÏÇÏ íÇã åÇí ŞÇÈá ÍĞİ åÑ ÏİÚå >1 _'
+          if tonumber(matches[2]) > 10000 or tonumber(matches[2]) < 1 then
+             pm = '_ 10000> ÃŠÃšÃÃ‡Ã ÂÃ­Ã‡Ã£ Ã¥Ã‡Ã­ ÃÃ‡ÃˆÃ¡ ÃÃÃ Ã¥Ã‘ ÃÃÃšÃ¥ >1 _'
              tdcli.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'html')
              else
           tdcli_function ({
@@ -18,11 +18,11 @@ local function run(msg, matches)
     offset_ = 0,
     limit_ = tonumber(matches[2])
   }, delmsg, nil)
-             pm ='*'..matches[2]..'* _íÇã ÇÎíÑ Ç˜ ÔÏ_'
+             pm ='*'..matches[2]..'* _ÂÃ­Ã‡Ã£ Ã‡ÃÃ­Ã‘ ÂÃ‡Ëœ Ã”Ã_'
              tdcli.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
          end
      end
- else pm ='Çíä Çã˜Çä İŞØ ÏÑ _ÓæÑ Ñæå_ ãã˜ä ÇÓÊ.'
+ else pm ='deletes msg #jojo.'
     tdcli.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
 end
 end
