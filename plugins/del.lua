@@ -1,32 +1,39 @@
-local function history(extra, suc, result)
-  for i=1, #result do
-    delete_msg(result[i].id, ok_cb, false)
-  end
-  if tonumber(extra.con) == #result then
-    send_msg(extra.chatid, '"'..#result..'"<i>âœ¨ Ù¾ÙŠØ§Ù… Ù‡Ø§ÙŠ Ø§Ø®ÙŠØ± Ø³ÙˆÙ¾Ø± Ú¯Ø±ÙˆÙ‡ Ø­Ø°Ù Ø´Ø¯!âœ¨</i>', ok_cb, false)
-  else
-    send_msg(extra.chatid, 'âœ¨ØªØ¹Ø¯Ø§Ø¯ Ù¾ÙŠØ§Ù… Ù…ÙˆØ±Ø¯ Ù†Ø¸Ø± Ø´Ù…Ø§ Ù¾Ø§Ú© Ø´Ø¯!âœ¨', ok_cb, false)
-  end
+local function delmsg (arg,data)
+for k,v in pairs(data.messages_) do
+tdcli.deleteMessages(v.chat_id_,{[0] = v.id_})
+end
 end
 local function run(msg, matches)
-  if matches[1] == 'Ù¾Ø§Ú© Ú©Ø±Ø¯Ù†' and is_owner(msg) then
-    if msg.to.type == 'channel' then
-      if tonumber(matches[2]) > 100000 or tonumber(matches[2]) < 1 then
-        return "<i>âœ¨Ø¹Ø¯Ø¯ Ø¨Ø§ÙŠØ¯ Ø¨Ø§Ù„Ø§ØªØ± Ø§Ø² 1Ø¨Ø§Ø´Ø¯!âœ¨</i>"
-      end
-      get_history(msg.to.peer_id, matches[2] + 1 , history , {chatid = msg.to.peer_id, con = matches[2]})
-    else
-      return "âœ¨Ù…Ø®ØµÙˆØµ Ø³ÙˆÙ¾Ø± Ú¯Ø±ÙˆÙ‡ Ø§Ø³Øªâœ¨"
-    end
-  else
-    return "<i>âœ¨Ø¯Ø³ØªØ±Ø³ÙŠ Ù†Ø¯Ø§Ø±ÙŠØ¯!âœ¨</i>"
-  end
+    if matches[1] == 'del' then
+    if msg.chat_id_:match("^-100") then
+       if is_owner(msg) or is_mod(msg) then
+          if tonumber(matches[2]) > 100 or tonumber(matches[2]) < 1 then
+             pm = '_ 100> ÊÚÏÇÏ íÇã åÇí ŞÇÈá ÍĞİ åÑ ÏİÚå >1 _'
+             tdcli.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'html')
+             else
+          tdcli_function ({
+    ID = "GetChatHistory",
+    chat_id_ = msg.chat_id_,
+    from_message_id_ = 0,
+    offset_ = 0,
+    limit_ = tonumber(matches[2])
+  }, delmsg, nil)
+             pm ='*'..matches[2]..'* _íÇã ÇÎíÑ Ç˜ ÔÏ_'
+             tdcli.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
+         end
+     end
+ else pm ='Çíä Çã˜Çä İŞØ ÏÑ _ÓæÑ Ñæå_ ãã˜ä ÇÓÊ.'
+    tdcli.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
+end
+end
 end
 
 return {
     patterns = {
-        '^(Ù¾Ø§Ú© Ú©Ø±Ø¯Ù†) (%d*)$'
+        '^[!#/]([Dd][Ee][Ll]) (%d*)$'
     },
     run = run
 }
-
+-- http://permag.ir
+-- @permag_ir
+-- @permag_bots
