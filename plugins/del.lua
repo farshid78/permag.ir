@@ -5,10 +5,10 @@ end
 end
 local function run(msg, matches)
     if matches[1] == 'del' then
-    if msg.chat_id_:match("^-10000") then
+    if msg.chat_id_:match("^-1000") then
        if is_owner(msg) or is_mod(msg) then
-          if tonumber(matches[2]) > 10000 or tonumber(matches[2]) < 1 then
-             pm = '_ 10000> ÊÚÏÇÏ íÇã åÇí ÞÇÈá ÍÐÝ åÑ ÏÝÚå >1 _'
+          if tonumber(matches[2]) > 1000 or tonumber(matches[2]) < 1 then
+             pm = '_ 1000> ÊÚÏÇÏ íÇã åÇí ÞÇÈá ÍÐÝ åÑ ÏÝÚå >1 _'
              tdcli.sendMessage(msg.chat_id_, data.msg.id_, 1, pm, 1, 'html')
              else
           tdcli_function ({
@@ -22,7 +22,7 @@ local function run(msg, matches)
              tdcli.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
          end
      end
- else pm ='deletes msg #jojo.'
+ else pm ='Çíä Çã˜Çä ÝÞØ ÏÑ _ÓæÑ Ñæå_ ãã˜ä ÇÓÊ.'
     tdcli.sendMessage(msg.chat_id_, msg.id_, 1, pm, 1, 'html')
 end
 end
@@ -34,6 +34,6 @@ return {
     },
     run = run
 }
--- http://permag.ir
--- @permag_ir
--- @permag_bots
+-- h
+-- @
+-- @
